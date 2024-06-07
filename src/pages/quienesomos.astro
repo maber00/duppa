@@ -1,0 +1,123 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ScrollToTop from '../components/ScrollToTop.astro';
+import Footer from '../components/Footer.astro';
+import Navbar from '../components/Navbar.astro'
+---
+
+<Layout title="Quiénes somos">
+  <Navbar />
+  <ScrollToTop />
+  <nav class="seccion-nav px-1 py-0.5 container mx-auto max-w-3xl rounded border border-gray-300"> <!-- Barra más angosta -->
+    <ul class="flex items-center justify-between"> <!-- Distribuir elementos uniformemente -->
+      <li><a href="#nosotros">Quiénes Somos</a></li>
+      <li><a href="#proposito">Nuestra Misión</a></li>
+      <li><a href="#valores">Nuestros Valores</a></li>
+    </ul>
+  </nav>
+  <main class="bg-gray-100 py-20">
+    <style>
+      @import '/src/styles.css';
+      .seccion-nav li.active {
+        background-color: #007bff;
+        border-radius: 5px;
+      }
+
+      .seccion-nav li.active a {
+        color: white;
+      }
+    </style>
+    <section class="container mx-auto max-w-5xl px-4">
+      <div id="nosotros" class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-8 md:mb-0 w-full md:w-7/12">
+          <h1 class="text-3xl font-bold mb-4 text-gray-800 resaltar">Quiénes Somos</h1>
+          <p class="text-gray-600 text-lg">
+            En Duppa, nos dedicamos a potenciar a emprendedores y empresas para que alcancen su máximo potencial en el mundo digital. Desde nuestra fundación en 2023, nos hemos comprometido a proporcionar herramientas poderosas y soluciones innovadoras que ayuden a nuestros clientes a triunfar en el comercio electrónico.
+          </p>
+        </div>
+        <div class="w-full md:w-5/12 mt-4 md:mt-0 flex justify-center">
+          <img src="/Recurso 2.png" alt="Ilustración" class="rounded-lg w-full max-w-xs md:max-w-sm h-auto" />
+        </div>
+      </div>
+      <div id="proposito" class="flex flex-col md:flex-row justify-between items-center mt-12">
+        <div class="w-full md:w-5/12 mb-8 md:mb-0 flex justify-center">
+          <img src="/Recurso 2.png" alt="Ilustración" class="rounded-lg w-full max-w-xs md:max-w-sm h-auto" />
+        </div>
+        <div class="w-full md:w-7/12">
+          <h2 class="text-3xl font-bold mb-2 resaltar">Nuestra Misión</h2>
+          <p class="text-gray-600 text-lg">
+            En Duppa, nuestra misión es democratizar el comercio electrónico, brindando a cada individuo y empresa la capacidad de construir, personalizar y gestionar su propia tienda en línea de manera fácil y eficiente. Nos esforzamos por ofrecer soluciones integrales que permitan a nuestros clientes tener el control total de su negocio digital y alcanzar sus metas comerciales.
+          </p>
+        </div>
+      </div>
+      <div id="valores" class="flex flex-col md:flex-row justify-between items-center mt-12">
+        <div class="w-full mb-8 md:mb-0">
+          <h2 class="text-3xl font-bold mb-2 resaltar">Nuestros Valores</h2>
+          <ol class="list-decimal text-lg text-gray-600 mb-4 pl-6">
+            <li>
+              <strong>Empoderamiento:</strong> Creemos en capacitar a nuestros clientes para que tomen el control de su presencia en línea y prosperen en el mundo del comercio electrónico.
+            </li>
+            <li>
+              <strong>Innovación:</strong> Estamos comprometidos con la innovación continua, desarrollando y mejorando constantemente nuestras soluciones para satisfacer las necesidades cambiantes del mercado.
+            </li>
+            <li>
+              <strong>Excelencia:</strong> Buscamos la excelencia en todo lo que hacemos, desde la calidad de nuestros productos hasta la atención al cliente y el soporte técnico que ofrecemos. En Duppa, estamos comprometidos a ser el socio de confianza de nuestros clientes en su viaje hacia el éxito en el comercio electrónico.
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <script>
+    interface Seccion {
+      id: string;
+    }
+
+    const secciones: Seccion[] = [
+      { id: 'nosotros' },
+      { id: 'proposito' },
+      { id: 'valores' }
+    ];
+
+    // Generar la lista de navegación
+    const ul = document.querySelector('ul');
+
+    if (ul) {
+      secciones.forEach((seccion) => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `#${seccion.id}`;
+        a.classList.add('text-lg', 'font-medium', 'text-gray-500', 'hover:text-blue-500');
+        // ... (resto del código para generar los enlaces)
+      });
+    } else {
+      console.error("No se encontró el elemento ul");
+    }
+
+    // Resaltar secciones y cambiar fondo
+    function actualizarResaltado() {
+      const desplazamientoVertical = window.pageYOffset || document.documentElement.scrollTop;
+
+      secciones.forEach((seccion) => {
+        const elemento = document.getElementById(seccion.id);
+        const enlace = document.querySelector(`a[href="#${seccion.id}"]`);
+        const li = enlace?.parentElement;
+
+        if (elemento && li) {
+          const posicionSuperiorElemento = elemento.offsetTop;
+          const alturaElemento = elemento.clientHeight;
+
+          if (desplazamientoVertical >= posicionSuperiorElemento - 100 && desplazamientoVertical <= (posicionSuperiorElemento + alturaElemento)) {
+            li.classList.add('active');
+          } else {
+            li.classList.remove('active');
+          }
+        }
+      });
+    }
+
+    window.addEventListener('scroll', actualizarResaltado);
+    actualizarResaltado(); // Llama a actualizarResaltado al cargar la página
+  </script>
+</Layout>

@@ -1,0 +1,20 @@
+---
+import MostrarMasTexto from '../sections/MostrarMasTexto';
+import Image from '../components/Image.astro';
+---
+
+<section class="bg-slate-50 items-center justify-center ">
+  <div class="px-4 py-8">
+    <div class="inset-0 flex items-center justify-center ">
+      <div class="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row items-center ">
+        <div class="w-full text-center animate-fade-in-right px-2 md:px-4 order-2">
+          <h1 class="text-5xl font-bold text-black">Sistema de administración de ventas:</h1>
+          <MostrarMasTexto client:load texto="Te damos la posibilidad de registrar, procesar y almacenar los detalles de cada transacción. " textoAdicional="Con nuestra solución, puedes conectar fácilmente tu sistema a una impresora para generar recibos al instante. Así, desde el primer día, tendrás un control total sobre tus ventas y podrás tomar decisiones informadas para hacer crecer tu negocio." />
+        </div>
+        <div class="w-full max-w-lg mx-auto mt-8">
+          <Image src="/Recurso 3.png" alt="Mujer sonriente con teléfono" class="mx-auto animate-fade-in-right" lazyLoad={true} />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

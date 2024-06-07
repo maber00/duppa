@@ -1,0 +1,23 @@
+---
+import MostrarMasTexto from '../sections/MostrarMasTexto';
+import Image from '../components/Image.astro';
+
+---
+
+<section class="bg-slate-50 items-center justify-center">
+  <div class="inset-0 flex items-center justify-center">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row items-center">
+      <div class="w-full lg:w-1/2 mt-8 lg:mt-0 lg:ml-8 text-center lg:text-left animate-fade-in-right">
+        <h1 class="text-5xl font-bold leading-none tracking-tight text-black">Lance tu tienda y ten el control de ella:</h1>
+        <MostrarMasTexto 
+          client:load
+          texto="Te brindamos la oportunidad de construir tu propia tienda en línea y aumentar tus ventas."
+          textoAdicional="Lo que significa que tienes el control total. Puedes personalizarla según tus necesidades y objetivos comerciales, y lo mejor de todo, puedes llevarla contigo y hacerla independiente en cualquier momento." 
+        />
+      </div>
+      <div class="lg:w-1/2 animate-fade-in-left">
+        <Image src="/Recurso 2.png" alt="Mujer sonriente con teléfono" class="max-w-lg mx-auto lg:mx-0" lazyLoad={true} />
+      </div>
+    </div>
+  </div>
+</section>

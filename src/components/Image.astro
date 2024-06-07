@@ -1,0 +1,21 @@
+---
+// src/components/Image.astro
+interface Props {
+  src: string;
+  alt: string;
+  class?: string;
+  lazyLoad?: boolean; 
+}
+
+const { src, alt, class: className, lazyLoad = false, ...props } = Astro.props;
+---
+
+<img
+  src={lazyLoad ? '' : src} 
+  alt={alt}
+  class={`${className ?? ''} ${lazyLoad ? 'lazy' : ''}`}
+  data-src={lazyLoad ? src : undefined}
+  {...props}
+/>
+
+<script src="../lib/LazyLoad.js" />

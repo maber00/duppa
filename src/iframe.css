@@ -1,0 +1,11 @@
+.frame-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.centered-frame {
+    width: 80%;
+    height: 80%;
+}
